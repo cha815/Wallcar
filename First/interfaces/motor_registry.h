@@ -2,7 +2,7 @@
 #ifndef MOTOR_REGISTRY_H
 #define MOTOR_REGISTRY_H
 #include "motor_port.h"
-#define MOTOR_REGISTRY_CAPACITY 2u
+#define MOTOR_REGISTRY_CAPACITY 4u
 typedef struct {
     motor_port_t ports[MOTOR_REGISTRY_CAPACITY];
     uint8_t ids[MOTOR_REGISTRY_CAPACITY],count;

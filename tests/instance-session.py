@@ -24,10 +24,10 @@ parser.add_argument('--seconds', type=float, default=6)
 parser.add_argument('--motion', action='store_true')
 parser.add_argument('--simultaneous', action='store_true', help='Run all selected instances together for one shared duration')
 parser.add_argument('--duration', type=float, default=2, help='Motion capture duration per selected motor, seconds')
-parser.add_argument('--id', type=int, choices=[1,2], help='Validate one instance only; no dependency on the other node')
+parser.add_argument('--id', type=int, choices=[1,2,3,4], help='Validate one instance only; no dependency on the other nodes')
 parser.add_argument('--output', default='docs/evidence/dual-instances-idle.csv')
 args = parser.parse_args()
-required = (args.id,) if args.id else (1,2)
+required = (args.id,) if args.id else (1,2,3,4)
 rows, diagnostics, latest, arrivals, buffer, summary = [], [], {}, {}, bytearray(), []
 failure = ''
 
@@ -43,7 +43,7 @@ with serial.Serial(args.port,115200,timeout=0.02,write_timeout=1) as port:
                 break
             if at>=60:
                 v=struct.unpack('<15f',buffer[at-60:at])
-                if all(math.isfinite(x) for x in v) and v[1] in (1,2):
+                if all(math.isfinite(x) for x in v) and v[1] in (1,2,3,4):
                     if v[0]==-1:
                         diagnostics.append(v)
                     elif v[0]>=0 and v[2] in (0,1) and v[3] in (0,1):

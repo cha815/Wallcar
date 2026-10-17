@@ -2,7 +2,7 @@
 
 - 根目录：Final；First 为 STM32H723 / MC02 裸机工程，Second 不在本次重构范围。
 - FDCAN1：PD0 RX、PD1 TX，仲裁 1 Mbps，接收数据段 5 Mbps，发送 FD 无 BRS。
-- 电机：泉智博，当前接入 ID1 / ID2；协议资料位于 `../docs/底盘电机`。
+- 电机：泉智博，当前接入 ID1～4，各自独立注册；协议资料位于 `../docs/底盘电机`。
 - UART7：115200/8N1，DAPLink 串口当前枚举 COM12。
 - 编码规范：`../代码规范.md`；应用技能：embedded-development-workflow 及其架构、验证、调试、Git 技能。
 - 构建：`First/Makefile`；主机验证：`tests/run-host.ps1`。

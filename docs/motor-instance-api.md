@@ -1,6 +1,6 @@
 # 电机实例与上层接口
 
-`DIAG_MODE=0` 在启动装配中注册 FDCAN1 ID1、ID2。实例、回调上下文和反馈互相独立；主循环调用 `firmware_tick(HAL_GetTick())`。
+`DIAG_MODE=0` 在启动装配中注册 FDCAN1 ID1～4。实例、回调上下文和反馈互相独立；主循环调用 `firmware_tick(HAL_GetTick())`。下例展示前两台，ID3/4使用相同查找和调用接口。
 
 依赖：上层 → `interfaces/motor_registry.h` → Devices（`qzb_motor`）→ CAN Service → 注入的 CAN Port → BSP/HAL。`composition/firmware.c` 绑定具体实现。接口头文件不依赖HAL或RTOS。
 
@@ -23,7 +23,7 @@ motor_port_velocity(motor1, 5.0f, 1.0f);
 motor_port_velocity(motor2, 5.0f, 1.0f);
 ```
 
-示例第二台也需独立使能并确认反馈。两实例互不隐式联动。上述速度接口使用 MIT：Kp=0、速度目标5 rad/s、Kd=1、力矩前馈0，由电机内部完成速度反馈闭环。实际存在阻尼速度误差，应读取反馈判断，不能以入队成功代替实际速度。
+示例第二台也需独立使能并确认反馈。各实例互不隐式联动。上述速度接口使用 MIT：Kp=0、速度目标5 rad/s、Kd=1、力矩前馈0，由电机内部完成速度反馈闭环。实际存在阻尼速度误差，应读取反馈判断，不能以入队成功代替实际速度。
 
 `motor_port_command()` 提供通用 MIT position / velocity / Kp / Kd / torque。每节点从参数24..35读取自身映射范围，保存在 `snapshot.limits`，用于编解码；不添加台架限速、限力矩或斜坡。ID2实测力矩映射±30 N·m，其内部Torque Limit为15 N·m，两者含义不同；均不改写。旧单机诊断的固定±18映射不用于新实例。
 

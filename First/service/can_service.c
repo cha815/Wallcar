@@ -9,7 +9,7 @@ int can_service_init(can_service_t *s,const can_port_t *p) {
 }
 int can_service_subscribe(can_service_t *s,void *ctx,can_receiver_t receive) {
     if(!s||!receive) return 0;
-    for(unsigned i=0;i<2;++i) if(!s->nodes[i].receive) {
+    for(unsigned i=0;i<CAN_SERVICE_NODE_CAPACITY;++i) if(!s->nodes[i].receive) {
         s->nodes[i].ctx=ctx;s->nodes[i].receive=receive;return 1;
     }
     return 0;
@@ -17,8 +17,8 @@ int can_service_subscribe(can_service_t *s,void *ctx,can_receiver_t receive) {
 int can_service_claim_feedback(can_service_t *s,void *ctx,uint32_t id) {
     if(!s||id>0x7ff) return 0;
     int unique=1;
-    for(unsigned i=0;i<2;++i) if(s->nodes[i].claimed&&s->nodes[i].ctx!=ctx&&s->nodes[i].feedback_id==id) unique=0;
-    for(unsigned i=0;i<2;++i) if(s->nodes[i].receive&&s->nodes[i].ctx==ctx) {
+    for(unsigned i=0;i<CAN_SERVICE_NODE_CAPACITY;++i) if(s->nodes[i].claimed&&s->nodes[i].ctx!=ctx&&s->nodes[i].feedback_id==id) unique=0;
+    for(unsigned i=0;i<CAN_SERVICE_NODE_CAPACITY;++i) if(s->nodes[i].receive&&s->nodes[i].ctx==ctx) {
         s->nodes[i].feedback_id=id;s->nodes[i].claimed=1;return unique;
     }
     return 0;
@@ -28,7 +28,7 @@ void can_service_poll(can_service_t *s) {
     can_frame_t f;
     for(unsigned n=0;n<32 && s->port.receive(s->port.ctx,&f)==CAN_OK;++n) {
         if(!can_frame_valid(&f)||f.extended||f.len!=8) { ++s->rejected;continue; }
-        for(unsigned i=0;i<2;++i) if(s->nodes[i].receive)
+        for(unsigned i=0;i<CAN_SERVICE_NODE_CAPACITY;++i) if(s->nodes[i].receive)
             s->nodes[i].receive(s->nodes[i].ctx,&f);
     }
 }
