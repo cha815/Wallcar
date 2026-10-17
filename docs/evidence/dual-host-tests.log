@@ -1,0 +1,9 @@
+PASS instances: registration/duplicate IDs/per-node config/feedback/upper velocity5/control routing/protocol ranges/BUSY/no test caps
+PASS PID: proportional/integral/derivative-on-measurement/antiwindup/invalid-input
+PASS core: DLC/flags/queue/readonly-whitelist/frames/responses
+PASS BSP: HAL mapping/TDC-order/queue/overflow/TX-events/busoff/recovery/init-failure
+PASS diagnostic: 4x1000 matched responses / parameter whitelist / 3-timeout abort
+PASS motor codec: MIT quantization/finite/range/feedback/status
+PASS tuning link: strict commands/limits/NaN/JustFloat layout
+PASS motor app: fixed5/PID6Nm/quantized-budget/feedback-protection/lifecycle/BUSY-samples
+PASS motor device: driver-torque-limit6/parameter gates/explicit protection clear

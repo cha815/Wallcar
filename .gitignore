@@ -1,0 +1,13 @@
+**/build/
+**/__pycache__/
+*.pyc
+.idea/
+.vscode/
+*.log
+!docs/evidence/dual-*.log
+docs/evidence/*-serial.log
+docs/evidence/board-*
+.git-commit-message.txt
+docs/evidence/original/
+docs/evidence/reference-before/
+Second/

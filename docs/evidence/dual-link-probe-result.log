@@ -1,0 +1,19 @@
+LINK_PROBE ID2_READ_ONLY no_enable no_motion no_parameter_write
+PROFILE FD_NO_BRS_RX5M init=0 nominal=1000000 data=5000000
+TX FD_NO_BRS_RX5M id=0x602 request=0 result=0
+RESULT FD_NO_BRS_RX5M request=0 ack=0 matched=0 TEC=128 REC=0 LEC=3 DLEC=0
+SUMMARY FD_NO_BRS_RX5M queued=1 done=0 rx=0 TEC=128 REC=0 LEC=3 DLEC=0 busoff=0 TX_edges=23016 RX_edges=22738 TX_pin=1 RX_pin=1
+PROFILE FD_BRS_5M init=0 nominal=1000000 data=5000000
+TX FD_BRS_5M id=0x602 request=0 result=0
+RESULT FD_BRS_5M request=0 ack=0 matched=0 TEC=128 REC=0 LEC=3 DLEC=3
+SUMMARY FD_BRS_5M queued=1 done=0 rx=0 TEC=128 REC=0 LEC=3 DLEC=3 busoff=0 TX_edges=14336 RX_edges=14176 TX_pin=1 RX_pin=1
+PROFILE FD_BRS_4M init=0 nominal=1000000 data=4000000
+TX FD_BRS_4M id=0x602 request=0 result=0
+RESULT FD_BRS_4M request=0 ack=0 matched=0 TEC=128 REC=0 LEC=0 DLEC=3
+SUMMARY FD_BRS_4M queued=1 done=0 rx=0 TEC=128 REC=0 LEC=0 DLEC=3 busoff=0 TX_edges=16228 RX_edges=16002 TX_pin=1 RX_pin=1
+PROFILE CLASSIC_1M init=0 nominal=1000000 data=5000000
+TX CLASSIC_1M id=0x602 request=0 result=0
+RESULT CLASSIC_1M request=0 ack=0 matched=0 TEC=128 REC=0 LEC=3 DLEC=3
+SUMMARY CLASSIC_1M queued=1 done=0 rx=0 TEC=128 REC=0 LEC=3 DLEC=3 busoff=0 TX_edges=22875 RX_edges=22613 TX_pin=0 RX_pin=0
+LINK_PROBE_DONE ID2_READ_ONLY
+
